@@ -4,12 +4,17 @@
  */
 package fracCalc;
 import java.util.*;
-public class FracCalc {
+public class FracCalcCheckpoint2 {
 
     public static void main(String[] args) 
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	Scanner userInput=new Scanner(System.in);
+    	String equation=userInput.nextLine();
+    	while(equation!="quit"){
+    		System.out.println(produceAnswer(equation));
+    		equation=userInput.nextLine();
+    	}
     	
     }
     
@@ -21,18 +26,17 @@ public class FracCalc {
     //        
     // The function should return the result of the fraction after it has been calculated
     //      e.g. return ==> "1_1/4"
-    public static String produceAnswer(String input)
-    { 
+    public static String produceAnswer(String input){ 
         // TODO: Implement this function to produce the solution to the input
-        if(input.indexOf("+")>-1)
-    		String[] addition = input.split("+");
-        else if(input.indexOf("-")>-1)
-        else if(input.indexOf("")>-1)
-        else
-        	String[] multiplication = input.
-        return "";
+        String[] operands=input.split(" ");
+		return operands[2];
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
-    
+    public static String[] parse(String operand){
+    	String[] findWhole = operand.split("_");
+    	String[] fraction = findWhole[1].split("/");
+    	
+    }
 }
+
