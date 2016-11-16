@@ -29,14 +29,34 @@ public class FracCalcCheckpoint2 {
     public static String produceAnswer(String input){ 
         // TODO: Implement this function to produce the solution to the input
         String[] operands=input.split(" ");
-		return operands[2];
+		String[] parts1=parse(operands[0]);
+        String[] parts2=parse(operands[2]);
+        return "whole:"+parts2[0]+" numerator:"+parts2[1]+" denominator:"+parts2[2];
     }
 
     // TODO: Fill in the space below with any helper methods that you think you will need
     public static String[] parse(String operand){
     	String[] findWhole = operand.split("_");
-    	String[] fraction = findWhole[1].split("/");
-    	
+    	String[] fraction = findWhole[findWhole.length-1].split("/");
+    	String[] operandParts = new String[3];
+    	if(operand.indexOf("_")>=0){
+    		operandParts[0]="0";
+    	}
+    	else if(operand.indexOf("_")<0&&operand.indexOf("/")>=0){
+    		operandParts[0]="0";
+    	}
+    	else {
+    		operandParts[0]=findWhole[0];
+    	}
+    	if(operand.indexOf("/")<0){
+    		operandParts[1]="0";
+    		operandParts[2]="1";
+    	}
+    	else {
+    		operandParts[1]=fraction[0];
+    		operandParts[2]=fraction[1];
+    	}
+    	return operandParts;
     }
 }
 
