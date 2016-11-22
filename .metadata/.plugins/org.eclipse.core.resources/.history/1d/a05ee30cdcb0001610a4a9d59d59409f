@@ -13,8 +13,9 @@ public class FracCalcCheckpoint2 {
     	System.out.println("Please type your problem");
     	String equation=userInput.nextLine();
     	while(equation!="quit"){
-    		System.out.println(produceAnswer(equation));
     		equation=userInput.nextLine();
+    		System.out.println(produceAnswer(equation));
+    		
     	}
     	
     }

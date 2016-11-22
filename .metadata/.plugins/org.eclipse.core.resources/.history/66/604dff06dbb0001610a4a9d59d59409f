@@ -10,7 +10,6 @@ public class FracCalcCheckpoint2 {
     {
         // TODO: Read the input from the user and call produceAnswer with an equation
     	Scanner userInput=new Scanner(System.in);
-    	System.out.println("Please type your problem");
     	String equation=userInput.nextLine();
     	while(equation!="quit"){
     		System.out.println(produceAnswer(equation));
