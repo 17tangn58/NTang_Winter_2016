@@ -32,15 +32,11 @@ public class FracCalc {
 	        String[] expressionParts=parseInput(input);
 			int[] parts1=parseOperands(expressionParts[0]);
 	        int[] parts2=parseOperands(expressionParts[2]);
-	        String answer="";
-	        if(input.indexOf("+")>-1){
+	        String answer;
+	        if(expressionParts[1].equals("+")){
 	        	answer=addFrac(parts1, parts2);
 	        }
-	        else if(input.indexOf("-")>-1)
-	        	answer=subtractFrac(parts1, parts2);
-	        else if(input.indexOf("*")>-1)
-	        	answer=multiplyFrac(parts1, parts2);
-	        return answer;
+	        return "whole:"+parts2[0]+" numerator:"+parts2[1]+" denominator:"+parts2[2];
 	    }
 
 	    // TODO: Fill in the space below with any helper methods that you think you will need
@@ -73,38 +69,19 @@ public class FracCalc {
 	    	int[] improperFrac = toImproperFrac(operandInt[0], operandInt[1], operandInt[2]);
 	    	return improperFrac;
 	    }
-	    public static int[] toImproperFrac(int num1, int num2, int num3) {
+	    public static String addFrac(int[] operand1, int[] operand2){
+	    	int commonDenom = operand1[1]*operand2[1];
+	    	int newNumerator = operand1[0]*operand2[1];
+	    	int finalNumerator = newNumerator+operand2[0];
+	    	String ans = finalNumerator+"/"+commonDenom;
+	    	return ans;
+	    }
+		public static int[] toImproperFrac(int num1, int num2, int num3) {
 			//This method makes a mixed number an improper fraction in array form
 			int[] toImproperFrac=new int[2];
 			toImproperFrac[0] = num1 * num3+ num2;
 			toImproperFrac[1] = num3;
 			return toImproperFrac;
-		}
-	    public static String addFrac(int[] operand1, int[] operand2){
-	    	int commonDenom = operand1[1]*operand2[1];
-	    	operand1[0] = operand1[0]*operand2[1];
-	    	operand2[0] = operand1[1]*operand2[0];
-	    	int finalNumerator = operand1[0]+operand2[0];
-	    	String ans = finalNumerator+"/"+commonDenom;
-	    	return ans;
-	    }
-		public static String subtractFrac(int[] operand1, int[] operand2){
-			operand2[0]=operand2[0]*(-1);
-			String ans = addFrac(operand1, operand2);
-			return ans;
-		}
-		public static String multiplyFrac(int[] operand1, int[] operand2){
-			operand1[0]= operand1[0]*operand2[0];
-			operand1[1] = operand2[1]*operand2[1];
-			String ans = operand1[0]+"/"+operand1[1];
-			return ans;
-		}
-		public static String divideFrac(int[] operand1, int[] operand2){
-			int temp=operand2[0];
-			operand2[0]=operand2[1];
-			operand2[1]=temp;
-			String ans = multiplyFrac(operand1,operand2);
-			return ans;
 		}
 	}
 

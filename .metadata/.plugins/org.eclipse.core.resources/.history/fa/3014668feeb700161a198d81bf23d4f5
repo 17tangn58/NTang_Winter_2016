@@ -36,10 +36,6 @@ public class FracCalc {
 	        if(input.indexOf("+")>-1){
 	        	answer=addFrac(parts1, parts2);
 	        }
-	        else if(input.indexOf("-")>-1)
-	        	answer=subtractFrac(parts1, parts2);
-	        else if(input.indexOf("*")>-1)
-	        	answer=multiplyFrac(parts1, parts2);
 	        return answer;
 	    }
 
