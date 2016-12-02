@@ -6,11 +6,11 @@ package fracCalc;
 import java.util.*;
 public class FracCalc {
 
-	 public static void main(String[] args) {
+	 public static void main(String[] args) 
+	    {
 	        // TODO: Read the input from the user and call produceAnswer with an equation
 	    	Scanner userInput=new Scanner(System.in);
 	    	String equation;
-	    	System.out.println(Arrays.toString(toImproperFrac(6, 2, 9)));
 	    	do{
 	    		System.out.println("Please type your problem");
 	    		equation=userInput.nextLine();
