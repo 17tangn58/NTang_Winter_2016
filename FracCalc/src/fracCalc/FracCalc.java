@@ -9,14 +9,14 @@ public class FracCalc {
 	 public static void main(String[] args) {
 	        // TODO: Read the input from the user and call produceAnswer with an equation
 	    	Scanner userInput=new Scanner(System.in);
-	    	String equation;
-	    	System.out.println(Arrays.toString(toImproperFrac(6, 2, 9)));
-	    	do{
-	    		System.out.println("Please type your problem");
+	    	System.out.println("Please type your problem");
+	    	String equation=userInput.nextLine();
+	    	while(equation.equals("quit")==false){
+	    		if(equation.indexOf("quit")<=0)
+	    			System.out.println(produceAnswer(equation));
+	    		System.out.println("Please type another problem or quit if you want to stop");
 	    		equation=userInput.nextLine();
-	    		System.out.println(produceAnswer(equation));
-	    	}while(equation.indexOf("quit")<=0);
-	    	
+	    	}
 	    }
 	    
 	    // ** IMPORTANT ** DO NOT DELETE THIS FUNCTION.  This function will be used to test your code
@@ -44,6 +44,8 @@ public class FracCalc {
 		        	answer=subtractFrac(parts1, parts2);
 		        else if(input.indexOf("*")>-1)
 		        	answer=multiplyFrac(parts1, parts2);
+		        else
+		        	answer=divideFrac(parts1, parts2);
 		        return answer[0]+"/"+answer[1];
 	        }
 			
@@ -58,6 +60,7 @@ public class FracCalc {
 	    	String[] findWhole = operand.split("_");
 	    	String[] fraction = findWhole[findWhole.length-1].split("/");
 	    	String[] operandParts = new String[3];
+	    	operandParts[2]="1";
 	    	int[] operandInt = new int[3];
 	    	if(operand.indexOf("_")<0&&operand.indexOf("/")>=0){
 	    		operandParts[0]="0";
@@ -82,7 +85,7 @@ public class FracCalc {
 	    public static int[] toImproperFrac(int num1, int num2, int num3) {
 			//This method makes a mixed number an improper fraction in array form
 			int[] toImproperFrac=new int[2];
-			toImproperFrac[0] = num1 * num3+ num2;
+			toImproperFrac[0] = num1 * num3 + num2;
 			toImproperFrac[1] = num3;
 			return toImproperFrac;
 		}
@@ -104,14 +107,14 @@ public class FracCalc {
 		public static int[] multiplyFrac(int[] operand1, int[] operand2){
 			int[] ans = new int[2];
 			ans[0]= operand1[0]*operand2[0];
-			ans[1] = operand2[1]*operand2[1];
+			ans[1] = operand1[1]*operand2[1];
 			return ans;
 		}
 		public static int[] divideFrac(int[] operand1, int[] operand2){
-			int temp=operand2[0];
-			operand2[0]=operand2[1];
-			operand2[1]=temp;
-			int[] ans = multiplyFrac(operand1,operand2);
+			int[] newOperand = new int[2];
+			newOperand[0]=operand2[1];
+			newOperand[1]=operand2[0];
+			int[] ans = multiplyFrac(operand1, newOperand);
 			return ans;
 		}
 	}
