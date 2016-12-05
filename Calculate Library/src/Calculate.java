@@ -163,8 +163,6 @@ public class Calculate {
 			if (Calculate.isDivisibleBy(num1, i) || Calculate.isDivisibleBy(num2, i)) {
 				ans= i;
 			}
-			else;
-				return 1;
 		}
 		return ans;
 	}

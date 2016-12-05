@@ -37,12 +37,12 @@ public class FracCalc {
 	        	int[] parts1=parseOperands(expressionParts[0]);
 		        int[] parts2=parseOperands(expressionParts[2]);
 		        int[] answer= new int[2];
-		        if(input.indexOf("+")>-1){
+		        if(expressionParts[1].equals("+")){
 		        	answer=addFrac(parts1, parts2);
 		        }
-		        else if(input.indexOf("-")>-1)
+		        else if(expressionParts[1].equals("-"))
 		        	answer=subtractFrac(parts1, parts2);
-		        else if(input.indexOf("*")>-1)
+		        else if(expressionParts[1].equals("*"))
 		        	answer=multiplyFrac(parts1, parts2);
 		        else
 		        	answer=divideFrac(parts1, parts2);
@@ -79,6 +79,8 @@ public class FracCalc {
 	    	for(int i=0;i<operandParts.length;i++){
 	    		operandInt[i]=Integer.parseInt(operandParts[i]);
 	    	}
+	    	if(operandInt[0]<0)
+	    		operandInt[1]=operandInt[1]*-1;
 	    	int[] improperFrac = toImproperFrac(operandInt[0], operandInt[1], operandInt[2]);
 	    	return improperFrac;
 	    }
