@@ -130,14 +130,12 @@ public class FracCalc {
 		
 		else{
 			int commonDenom=gcf(mixedNum[1], mixedNum[2]);
-			if (mixedNum[1]<0&&mixedNum[0]==0)
-				mixedNum[1]=(mixedNum[1]/commonDenom);
-			else if (mixedNum[1]<0&&mixedNum[2]<0)
-				mixedNum[1]=((-1)*mixedNum[1]/commonDenom);
-			else if(mixedNum[1]<0)
+			if(mixedNum[1]<0&&mixedNum[0]<0)
 				mixedNum[1]=Math.abs(mixedNum[1]/commonDenom);
 			else
 				mixedNum[1]=(mixedNum[1]/commonDenom);
+			if(mixedNum[0]<0&&mixedNum[1]<0||mixedNum[1]>0&&mixedNum[0]==0&&commonDenom<0)
+				mixedNum[1]=mixedNum[1]*-1;
 			mixedNum[2]=Math.abs(mixedNum[2]/commonDenom);
 			if(mixedNum[0]==0&&mixedNum[1]!=0)
 				return mixedNum[1]+"/"+mixedNum[2];
@@ -149,9 +147,18 @@ public class FracCalc {
 			divisible by another number
 		 */
 		int ans= 1;
-		for(int i=1; i<=num1 || i<=num2; i++){
-			if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
-				ans= i;
+		if(num1>0&&num2>0){
+			for(int i=1; i<=num1 || i<=num2; i++){
+				if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
+					ans= i;
+				}
+			}
+		}
+		else{
+			for(int i=-1;i>=num1 || i>=num2; i--){
+				if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
+					ans= i;
+				}
 			}
 		}
 		return ans;
@@ -164,6 +171,6 @@ public class FracCalc {
 		return(false); 
 	}
 	public static void asdkfahsdlf(){
-		
+
 	}
 }
