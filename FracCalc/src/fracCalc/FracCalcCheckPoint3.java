@@ -1,11 +1,10 @@
 /* Nathan Tang
  * 12/9/16
  * 2nd period
- * Fraction Calculator
  */
 package fracCalc;
 import java.util.*;
-public class FracCalc {
+public class FracCalcCheckPoint3 {
 	public static void main(String[] args) {
 		// Reads the input from the user and call produceAnswer with an equation
 		Scanner userInput=new Scanner(System.in); 
@@ -33,8 +32,7 @@ public class FracCalc {
 			answer=multiplyFrac(parts1, parts2);
 		else
 			answer=divideFrac(parts1, parts2);
-		String simpAns = simplifyFrac(answer);
-		return simpAns;
+		return answer[0]+"/"+answer[1];
 	}
 	public static String[] parseInput(String expression){
 		//Parses the input into its parts
@@ -108,56 +106,5 @@ public class FracCalc {
 		newOperand[1]=operand2[0];
 		int[] ans = multiplyFrac(operand1, newOperand);
 		return ans;
-	}
-	public static String simplifyFrac(int[] fraction){
-		//Simplifies the answer fraction to its most reduced form(mixed number or a reduced fraction)
-		int[] mixedNum = new int[3];
-		mixedNum[0]=fraction[0]/fraction[1];
-		mixedNum[1]=fraction[0]%fraction[1];
-		mixedNum[2]=fraction[1];			
-		if(mixedNum[1]==0)
-			return mixedNum[0]+"";
-		
-		else{
-			int commonDenom=gcf(mixedNum[1], mixedNum[2]);
-			if(mixedNum[1]<0&&mixedNum[0]<0)
-				mixedNum[1]=Math.abs(mixedNum[1]/commonDenom);
-			else
-				mixedNum[1]=(mixedNum[1]/commonDenom);
-			if(mixedNum[0]<0&&mixedNum[1]<0||mixedNum[1]>0&&mixedNum[0]==0&&commonDenom<0)
-				mixedNum[1]=mixedNum[1]*-1;
-			mixedNum[2]=Math.abs(mixedNum[2]/commonDenom);
-			if(mixedNum[0]==0&&mixedNum[1]!=0)
-				return mixedNum[1]+"/"+mixedNum[2];
-			return mixedNum[0]+"_"+mixedNum[1]+"/"+mixedNum[2];
-		}
-	}
-	public static int gcf(int num1, int num2){
-		/*This method finds the greatest common factor between two numbers using a loop to calculate whether those two numbers are
-			divisible by another number
-		 */
-		int ans= 1;
-		if(num1>0&&num2>0){
-			for(int i=1; i<=num1 || i<=num2; i++){
-				if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
-					ans= i;
-				}
-			}
-		}
-		else{
-			for(int i=-1;i>=num1 || i>=num2; i--){
-				if (isDivisibleBy(num1, i) && isDivisibleBy(num2, i)) {
-					ans= i;
-				}
-			}
-		}
-		return ans;
-	}
-	public static boolean isDivisibleBy(int num1, int num2) {
-		//This method tells the user whether one number divided by another results in a whole number
-		if (num1%num2==0)
-			return(true);
-		else;
-		return(false); 
 	}
 }
