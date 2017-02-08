@@ -1,0 +1,10 @@
+
+public class AdvanceTicket extends Ticket {
+
+	@Override
+	public int getPrice() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}
