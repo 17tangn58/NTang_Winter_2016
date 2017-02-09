@@ -6,6 +6,6 @@ public abstract class Ticket {
 		return "Number: "+number+", Price: "+getPrice(); 
 	}
 	public Ticket(int n){
-		number=n;
+		n=number;
 	}
 }
