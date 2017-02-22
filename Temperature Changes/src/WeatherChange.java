@@ -9,8 +9,9 @@ public class WeatherChange {
 		while(input.hasNext()){
 			current = input.nextDouble();
 			double diff = current-previous;
-			System.out.print(previous+" to "+current+", change = ");
-			System.out.printf("%.2f", diff+"\n");
+			double temp=diff*100.0;
+			double rounded=(int)temp/100.0;
+			System.out.println(previous+" to "+current+", change = "+rounded);
 			previous=current;
 		}
 	}
