@@ -1,5 +1,6 @@
 package textExcel;
 //Nathan Tang 2nd period
+//Update this file with your own code.
 
 public class SpreadsheetLocation implements Location{
     private int row;
