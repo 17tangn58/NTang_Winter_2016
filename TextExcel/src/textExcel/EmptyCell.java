@@ -5,7 +5,7 @@ public class EmptyCell implements Cell {
 	@Override
 	public String abbreviatedCellText() {
 		// TODO Auto-generated method stub
-		return "";
+		return "          ";
 	}
 	@Override
 	public String fullCellText() {
