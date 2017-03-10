@@ -9,21 +9,26 @@ public class Spreadsheet implements Grid{
 			for(int j=0;j<sprsheet[i].length;j++)
 				sprsheet[i][j]=new EmptyCell();
 		}
+
 	}
 	@Override
 	public String processCommand(String command){
 		// TODO Make it not have errors
 		String[] commandParts = command.split(" ");
-		SpreadsheetLocation loc=new SpreadsheetLocation(commandParts[0]);
-		if(commandParts.length==1&&commandParts[0].equals("clear"))
+		if(commandParts.length==1&&commandParts[0].toLowerCase().equals("clear"))
 			return clear();
-		if(commandParts.length==1&&!commandParts[0].equals("clear"))
+		SpreadsheetLocation loc;
+		if(commandParts.length==1&&!commandParts[0].equals("clear")){
+			loc=new SpreadsheetLocation(commandParts[0]);
 			return getCell(loc).fullCellText();
+		}
 		else if(commandParts[1].equals("=")){
-			sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2].substring(1, commandParts[2].length()));
+			loc=new SpreadsheetLocation(commandParts[0]);
+			sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2].substring(1, commandParts[2].length()-1));
 			return getGridText();
 		}
-		else if(commandParts[0].equals("clear")){
+		else if(commandParts[0].toLowerCase().equals("clear")){
+			loc =new SpreadsheetLocation(commandParts[1]);
 			sprsheet[loc.getRow()][loc.getCol()]=new EmptyCell();
 			return getGridText();
 		}
@@ -55,8 +60,8 @@ public class Spreadsheet implements Grid{
 		for(int i=0;i<this.getRows();i++){
 			s+=String.format("%-3d|", i+1);
 			for(int j=0;j<this.getCols();j++){
-				char row=(char) (j+65);
-				int col=j+1;
+				char row=(char) (j+'A');
+				int col=i+1;
 				String loc=row+""+col;
 				SpreadsheetLocation cellLoc=new SpreadsheetLocation(loc);
 				s+=getCell(cellLoc).abbreviatedCellText()+"|";

@@ -10,9 +10,7 @@ public class TextCell implements Cell {
 		if(text.length()>10)
 			return text.substring(0,10);
 		else{
-			for(int i=0;i<10-text.length();i++){
-				text = text+" ";
-			}
+			text=String.format("%-10s", text);
 			return text;
 		}
 	}
