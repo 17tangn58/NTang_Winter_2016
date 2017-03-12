@@ -17,7 +17,7 @@ public class Spreadsheet implements Grid{
 		if(commandParts.length==1&&commandParts[0].toLowerCase().equals("clear"))
 			return clear();
 		SpreadsheetLocation loc;
-		if(commandParts.length==1&&!commandParts[0].equals("clear")&&!commandParts[0].equals("")){
+		if(commandParts.length==1&&!commandParts[0].equals("clear")){
 			loc=new SpreadsheetLocation(commandParts[0]);
 			return getCell(loc).fullCellText();
 		}

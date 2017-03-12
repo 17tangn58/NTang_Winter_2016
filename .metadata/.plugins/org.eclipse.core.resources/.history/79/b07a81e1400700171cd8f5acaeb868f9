@@ -13,15 +13,15 @@ public class Spreadsheet implements Grid{
 	}
 	@Override
 	public String processCommand(String command){
-		String[] commandParts = command.split(" ", 3);
+		String[] commandParts;
 		if(commandParts.length==1&&commandParts[0].toLowerCase().equals("clear"))
 			return clear();
 		SpreadsheetLocation loc;
-		if(commandParts.length==1&&!commandParts[0].equals("clear")&&!commandParts[0].equals("")){
+		if(commandParts.length==1&&!commandParts[0].equals("clear")){
 			loc=new SpreadsheetLocation(commandParts[0]);
 			return getCell(loc).fullCellText();
 		}
-		else if(commandParts.length>1&&commandParts[1].equals("=")){
+		else if(commandParts[1].equals("=")){
 			loc=new SpreadsheetLocation(commandParts[0]);
 			sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2].substring(0, commandParts[2].length()));
 			return getGridText();

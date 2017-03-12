@@ -1,10 +1,12 @@
 package textExcel;
 //Nathan Tang 2nd period
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.Scanner;
 public class TextExcel{
 	public static void main(String[] args) throws FileNotFoundException{
+		String hello = "Hello";
+		TextCell asdf = new TextCell("\"\"");
+		System.out.println(asdf.abbreviatedCellText());
 		/*Spreadsheet spreadsheet = new Spreadsheet();
 		Scanner userInput=new Scanner(System.in);
 		System.out.println("Please enter a command");
