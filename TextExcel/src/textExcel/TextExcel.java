@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class TextExcel{
 	public static void main(String[] args) throws FileNotFoundException{
-		/*Spreadsheet spreadsheet = new Spreadsheet();
+		Spreadsheet spreadsheet = new Spreadsheet();
 		Scanner userInput=new Scanner(System.in);
 		System.out.println("Please enter a command");
 		String command=userInput.nextLine();
@@ -13,6 +13,6 @@ public class TextExcel{
 			System.out.println(spreadsheet.processCommand(command));
 			System.out.println("Please enter another command");
 			command=userInput.nextLine();
-		}*/
+		}
 	}
 }

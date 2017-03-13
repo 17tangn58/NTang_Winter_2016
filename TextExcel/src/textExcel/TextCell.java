@@ -6,8 +6,7 @@ public class TextCell implements Cell {
 		text=line;
 	}
 	@Override
-	public String abbreviatedCellText() {
-		
+	public String abbreviatedCellText() {	
 		if(text.length()-1>10){
 			if(text.substring(0, 1).equals("\"")){
 				if(text.substring(10, 11).equals("\""))

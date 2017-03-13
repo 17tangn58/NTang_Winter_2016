@@ -23,7 +23,9 @@ public class Spreadsheet implements Grid{
 		}
 		else if(commandParts.length>1&&commandParts[1].equals("=")){
 			loc=new SpreadsheetLocation(commandParts[0]);
-			sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2].substring(0, commandParts[2].length()));
+			if(commandParts[2].equals("\""))
+				sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2].substring(0, commandParts[2].length()));
+			
 			return getGridText();
 		}
 		else if(commandParts[0].toLowerCase().equals("clear")){
