@@ -8,18 +8,13 @@ public abstract class RealCell implements Cell {
 	@Override
 	public String abbreviatedCellText() {
 		// TODO Auto-generated method stub
-		return "";
+		return null;
 	}
-	public String getString(){
-		return input;
-	}
+
 	@Override
 	public String fullCellText() {
 		// TODO Auto-generated method stub
 		return input;
-	}
-	public double getDoubleValue(){
-		return 0.0;
 	}
 
 }
