@@ -1,14 +1,14 @@
 package textExcel;
 //Nathan Tang 2nd period
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 public class TextExcel{
 	public static void main(String[] args) throws FileNotFoundException{
-		Cell tester= new TextCell("hello");
-		System.out.println("abbre: "+tester.abbreviatedCellText());
-		System.out.println("full: "+tester.fullCellText());
-		/*Spreadsheet spreadsheet = new Spreadsheet();
-		Scanner userInput=new Scanner(System.in);
+		String zero = "0.0";
+		Spreadsheet spreadsheet = new Spreadsheet();
+		System.out.println(spreadsheet.processCommand("A = "+zero));
+		/*Scanner userInput=new Scanner(System.in);
 		System.out.println("Please enter a command");
 		String command=userInput.nextLine();
 		while(!command.equals("quit")){ //Command loop

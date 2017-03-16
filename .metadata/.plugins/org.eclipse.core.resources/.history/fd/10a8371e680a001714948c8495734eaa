@@ -4,7 +4,7 @@ public class ValueCell extends RealCell{
 	private double decimal;
 	public ValueCell(String value) {
 		super(value);
-		decimal=Double.parseDouble(value.substring(1));
+		decimal=Double.parseDouble(value.substring(1, value.length()-1));
 	}
 	public String fullCellText(){
 		return ""+decimal;

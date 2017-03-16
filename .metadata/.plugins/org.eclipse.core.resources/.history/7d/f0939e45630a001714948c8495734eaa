@@ -30,7 +30,7 @@ public class Spreadsheet implements Grid{
 			else if(commandParts[2].substring(0,1).equals("("))
 				sprsheet[loc.getRow()][loc.getCol()]= new FormulaCell(commandParts[2].substring(0, commandParts[2].length()));
 			else
-				sprsheet[loc.getRow()][loc.getCol()]= new ValueCell(commandParts[2].substring(0, commandParts[2].length()));
+				sprsheet[loc.getRow()][loc.getCol()]= new PercentCell(commandParts[2].substring(0, commandParts[2].length()));
 			return getGridText();
 		}
 		else if(commandParts[0].toLowerCase().equals("clear")){
