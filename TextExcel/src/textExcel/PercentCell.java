@@ -10,7 +10,8 @@ public class PercentCell extends ValueCell {
 		return ""+percent/100;
 	}
 	public String abbreviatedCellText(){
-		return String.format("%-9s", getString().substring(0,1))+"%";
+		percent=percent*100/100;
+		return String.format("%-10s", percent+"%");
 	}
 	public double getDoubleValue(){
 		return percent/100;

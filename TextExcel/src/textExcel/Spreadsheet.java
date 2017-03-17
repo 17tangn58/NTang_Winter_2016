@@ -24,13 +24,13 @@ public class Spreadsheet implements Grid{
 		else if(commandParts.length>1&&commandParts[1].equals("=")){
 			loc=new SpreadsheetLocation(commandParts[0]);
 			if(commandParts[2].substring(0,1).equals("\""))
-				sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2].substring(0, commandParts[2].length()));
+				sprsheet[loc.getRow()][loc.getCol()]= new TextCell(commandParts[2]);
 			else if(commandParts[2].substring(commandParts[2].length()-1).equals("%"))
-				sprsheet[loc.getRow()][loc.getCol()]= new PercentCell(commandParts[2].substring(0, commandParts[2].length()));
+				sprsheet[loc.getRow()][loc.getCol()]= new PercentCell(commandParts[2].substring(0, commandParts[2].length()-1));
 			else if(commandParts[2].substring(0,1).equals("("))
-				sprsheet[loc.getRow()][loc.getCol()]= new FormulaCell(commandParts[2].substring(0, commandParts[2].length()));
+				sprsheet[loc.getRow()][loc.getCol()]= new FormulaCell(commandParts[2]);
 			else
-				sprsheet[loc.getRow()][loc.getCol()]= new ValueCell(commandParts[2].substring(0, commandParts[2].length()));
+				sprsheet[loc.getRow()][loc.getCol()]= new ValueCell(commandParts[2]);
 			return getGridText();
 		}
 		else if(commandParts[0].toLowerCase().equals("clear")){

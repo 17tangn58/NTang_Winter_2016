@@ -5,16 +5,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 public class TextExcel{
 	public static void main(String[] args) throws FileNotFoundException{
-		String zero = "0.0";
 		Spreadsheet spreadsheet = new Spreadsheet();
-		System.out.println(spreadsheet.processCommand("A1 = "+zero));
-		/*Scanner userInput=new Scanner(System.in);
+		Scanner userInput=new Scanner(System.in);
 		System.out.println("Please enter a command");
 		String command=userInput.nextLine();
 		while(!command.equals("quit")){ //Command loop
 			System.out.println(spreadsheet.processCommand(command));
 			System.out.println("Please enter another command");
 			command=userInput.nextLine();
-		}*/
+		}
 	}
 }
