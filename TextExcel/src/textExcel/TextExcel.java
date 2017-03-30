@@ -1,5 +1,7 @@
 package textExcel;
-//Nathan Tang 2nd period
+/* Nathan Tang 2nd period
+ * 3/31/17
+ */
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Scanner;

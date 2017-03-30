@@ -24,7 +24,11 @@ public class FormulaCell extends RealCell {
 		//returns the answer to the formula as a double
 		String[] split = getString().split(" ");
 		double answer=0;
-		if(Character.isLetter(split[1].charAt(0))){
+		if(split[0].toUpperCase().equals("SUM"))
+			return sum(split);
+		else if(split[0].toUpperCase().equals("AVG"))
+			return avg(split);
+		else if(Character.isLetter(split[1].charAt(0))){
 			SpreadsheetLocation loc = new SpreadsheetLocation(split[1]);
 			answer=((RealCell) spr.getCell(loc)).getDoubleValue();
 		}
@@ -63,5 +67,15 @@ public class FormulaCell extends RealCell {
 		}
 		return answer;
 	}
-	
+	public double sum(String selected){
+		double sum=0.0;
+		
+		for(int i=1;)
+		return sum;
+	}
+	public double avg(String selected){
+		double total=sum(selected);
+		
+		return avg;
+	}
 }
