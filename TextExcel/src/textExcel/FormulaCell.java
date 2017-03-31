@@ -70,18 +70,34 @@ public class FormulaCell extends RealCell {
 	public double sum(String selected){
 		String[] s=selected.toUpperCase().split("-");
 		double sum=0.0;
-		for(char i=s[0].charAt(0);i<s[1].charAt(0);i++){
-			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1));j++){
+		for(char i=s[0].charAt(0);i<s[1].charAt(0)+1;i++){
+			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1))+1;j++){
 				SpreadsheetLocation loc = new SpreadsheetLocation(i+""+j);
-				sum+=((RealCell) spr.getCell(loc)).getDoubleValue();
+				if(((RealCell) spr.getCell(loc)).getString().substring(0, 1).equals("-"))
+					sum-=((RealCell) spr.getCell(loc)).getDoubleValue();
+				else
+					sum+=((RealCell) spr.getCell(loc)).getDoubleValue();
 			}
 		}
 		return sum;
 	}
 	public double avg(String selected){
 		String[] s=selected.toUpperCase().split("-");
-		double total=sum(selected);
-		double avg=total/(double)(1+Integer.parseInt(s[1].substring(1))-Integer.parseInt(s[0].substring(1))*s[1].charAt(0)-s[0].charAt(0));
+		double total=0.0;
+		int num=0;
+		for(char i=s[0].charAt(0);i<s[1].charAt(0)+1;i++){
+			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1))+1;j++){
+				SpreadsheetLocation loc = new SpreadsheetLocation(i+""+j);
+				if(spr.getCell(loc)instanceof RealCell){
+					if(((RealCell) spr.getCell(loc)).getString().substring(0, 1).equals("-"))
+						total-=((RealCell) spr.getCell(loc)).getDoubleValue();
+					else
+						total+=((RealCell) spr.getCell(loc)).getDoubleValue();
+					num++;
+				}
+			}
+		}
+		double avg=total/(num);
 		return avg;
 	}
 }
