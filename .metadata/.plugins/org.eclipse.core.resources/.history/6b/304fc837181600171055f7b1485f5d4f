@@ -1,0 +1,49 @@
+package textExcel;
+
+public class ValueCell extends RealCell{
+	private double decimal;
+	public ValueCell(String value) {
+		//stores both original string and double value of the string
+		super(value);
+		decimal=Double.parseDouble(value);
+	}
+	public String fullCellText(){
+		//returns the full double
+		return getString();
+	}
+	public String abbreviatedCellText(){
+		String num = getString();
+		int dot=periodLoc();
+		if (dot==-1)//if there is no decimal, add one
+			num= num+".0";
+		int i=getString().length()-1;
+		if(decimal!=0){//shorten the number of zeros to the next non zero character
+			while(num.substring(i, i+1).equals("0")&&dot>=0){
+				num=num.substring(0, i);
+				i--;
+			}
+			if(num.substring(num.length()-1).equals("."))
+				num=num+"0";
+		}
+		if(num.length()>10){
+			//cutting the string down to 10 characters
+			return num.substring(0, 10);
+		}	
+		else//formatted version if less than 10 characters long
+			return String.format("%-10s", num.substring(0));
+	}
+	public double getDoubleValue(){
+		//returns double value of the cell
+		if(getString().substring(0, 1).equals("-"))
+			return decimal*-1.0;
+		return decimal;
+	}
+	public int periodLoc(){
+		//determines location of the period
+		for(int i=0;i<getString().length();i++){
+			if(getString().substring(i, i+1).equals("."))
+				return i;
+		}
+		return -1;
+	}
+}

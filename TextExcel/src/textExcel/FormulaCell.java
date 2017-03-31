@@ -24,10 +24,10 @@ public class FormulaCell extends RealCell {
 		//returns the answer to the formula as a double
 		String[] split = getString().split(" ");
 		double answer=0;
-		if(split[0].toUpperCase().equals("SUM"))
-			return sum(split);
-		else if(split[0].toUpperCase().equals("AVG"))
-			return avg(split);
+		if(split[1].toUpperCase().equals("SUM"))
+			return sum(split[2]);
+		else if(split[1].toUpperCase().equals("AVG"))
+			return avg(split[2]);
 		else if(Character.isLetter(split[1].charAt(0))){
 			SpreadsheetLocation loc = new SpreadsheetLocation(split[1]);
 			answer=((RealCell) spr.getCell(loc)).getDoubleValue();
@@ -68,14 +68,20 @@ public class FormulaCell extends RealCell {
 		return answer;
 	}
 	public double sum(String selected){
+		String[] s=selected.toUpperCase().split("-");
 		double sum=0.0;
-		
-		for(int i=1;)
+		for(char i=s[0].charAt(0);i<s[1].charAt(0);i++){
+			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1));j++){
+				SpreadsheetLocation loc = new SpreadsheetLocation(i+""+j);
+				sum+=((RealCell) spr.getCell(loc)).getDoubleValue();
+			}
+		}
 		return sum;
 	}
 	public double avg(String selected){
+		String[] s=selected.toUpperCase().split("-");
 		double total=sum(selected);
-		
+		double avg=total/(double)(1+Integer.parseInt(s[1].substring(1))-Integer.parseInt(s[0].substring(1))*s[1].charAt(0)-s[0].charAt(0));
 		return avg;
 	}
 }

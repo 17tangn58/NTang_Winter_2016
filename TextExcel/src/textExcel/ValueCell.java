@@ -35,7 +35,7 @@ public class ValueCell extends RealCell{
 	public double getDoubleValue(){
 		//returns double value of the cell
 		if(getString().substring(0, 1).equals("-"))
-			return decimal*-1.0;
+			return decimal*(-1.0);
 		return decimal;
 	}
 	public int periodLoc(){
