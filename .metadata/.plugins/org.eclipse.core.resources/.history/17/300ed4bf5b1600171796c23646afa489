@@ -24,12 +24,11 @@ public class FormulaCell extends RealCell {
 		//returns the answer to the formula as a double
 		String[] split = getString().split(" ");
 		double answer=0;
-		if(split[1].toUpperCase().equals("SUM"))//for sum
+		if(split[1].toUpperCase().equals("SUM"))
 			return sum(split[2]);
-		else if(split[1].toUpperCase().equals("AVG"))//for average
+		else if(split[1].toUpperCase().equals("AVG"))
 			return avg(split[2]);
-		//the next if else converts the first string of the expression into the initial value of answer
-		if(Character.isLetter(split[1].charAt(0))){
+		else if(Character.isLetter(split[1].charAt(0))){
 			SpreadsheetLocation loc = new SpreadsheetLocation(split[1]);
 			answer=((RealCell) spr.getCell(loc)).getDoubleValue();
 		}
@@ -38,7 +37,6 @@ public class FormulaCell extends RealCell {
 		for(int i=0;i<split.length;i++){
 			if(split[i].equals("+")){
 				if(Character.isLetter(split[i+1].charAt(0))){
-					//if a cell is referenced, get the double value of that cell
 					SpreadsheetLocation loc = new SpreadsheetLocation(split[i+1]);
 					answer+=((RealCell) spr.getCell(loc)).getDoubleValue();
 				}
@@ -46,7 +44,6 @@ public class FormulaCell extends RealCell {
 			}
 			else if(split[i].equals("/")){
 				if(Character.isLetter(split[i+1].charAt(0))){
-					//if a cell is referenced, get the double value of that cell
 					SpreadsheetLocation loc = new SpreadsheetLocation(split[i+1]);
 					answer/=((RealCell) spr.getCell(loc)).getDoubleValue();
 				}
@@ -55,15 +52,13 @@ public class FormulaCell extends RealCell {
 				
 			else if(split[i].equals("*")){
 				if(Character.isLetter(split[i+1].charAt(0))){
-					//if a cell is referenced, get the double value of that cell
 					SpreadsheetLocation loc = new SpreadsheetLocation(split[i+1]);
 					answer*=((RealCell) spr.getCell(loc)).getDoubleValue();
 				}
 				else answer *= Double.parseDouble(split[i+1]);
 			}
-			else if(split[i].equals("-")){//subtraction
+			else if(split[i].equals("-")){
 				if(Character.isLetter(split[i+1].charAt(0))){
-					//if a cell is referenced, get the double value of that cell
 					SpreadsheetLocation loc = new SpreadsheetLocation(split[i+1]);
 					answer-=((RealCell) spr.getCell(loc)).getDoubleValue();
 				}
@@ -75,9 +70,12 @@ public class FormulaCell extends RealCell {
 	public double sum(String selected){
 		String[] s=selected.toUpperCase().split("-");
 		double sum=0.0;
-		for(char i=s[0].charAt(0);i<s[1].charAt(0)+1;i++){//represents columns
-			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1))+1;j++){//represents rows
+		for(char i=s[0].charAt(0);i<s[1].charAt(0)+1;i++){
+			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1))+1;j++){
 				SpreadsheetLocation loc = new SpreadsheetLocation(i+""+j);
+				/*if(((RealCell) spr.getCell(loc)).getString().substring(0, 1).equals("-"))
+					sum-=((RealCell) spr.getCell(loc)).getDoubleValue();
+				else*/
 					sum+=((RealCell) spr.getCell(loc)).getDoubleValue();
 			}
 		}
@@ -87,10 +85,13 @@ public class FormulaCell extends RealCell {
 		String[] s=selected.toUpperCase().split("-");
 		double total=0.0;
 		int num=0;
-		for(char i=s[0].charAt(0);i<s[1].charAt(0)+1;i++){//represents columns
-			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1))+1;j++){//represents rows
+		for(char i=s[0].charAt(0);i<s[1].charAt(0)+1;i++){
+			for(int j=Integer.parseInt(s[0].substring(1));j<Integer.parseInt(s[1].substring(1))+1;j++){
 				SpreadsheetLocation loc = new SpreadsheetLocation(i+""+j);
-				if(spr.getCell(loc)instanceof RealCell){//counter for the total number
+				if(spr.getCell(loc)instanceof RealCell){
+					/*if(((RealCell) spr.getCell(loc)).getString().substring(0, 1).equals("-"))
+						total-=((RealCell) spr.getCell(loc)).getDoubleValue();
+					else*/
 						total+=((RealCell) spr.getCell(loc)).getDoubleValue();
 					num++;
 				}

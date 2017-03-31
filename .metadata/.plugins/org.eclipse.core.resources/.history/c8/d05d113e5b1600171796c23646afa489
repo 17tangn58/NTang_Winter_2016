@@ -6,6 +6,7 @@ public class ValueCell extends RealCell{
 		//stores both original string and double value of the string
 		super(value);
 		decimal=Double.parseDouble(value);
+		System.out.println(decimal);
 	}
 	public String fullCellText(){
 		//returns the full double
@@ -34,7 +35,9 @@ public class ValueCell extends RealCell{
 	}
 	public double getDoubleValue(){
 		//returns double value of the cell
-		return decimal;
+		if(getString().substring(0, 1).equals("-"))
+			return decimal/(-1.0);
+		else return decimal;
 	}
 	public int periodLoc(){
 		//determines location of the period

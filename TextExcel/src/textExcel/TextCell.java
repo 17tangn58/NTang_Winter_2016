@@ -5,8 +5,9 @@ public class TextCell implements Cell {
 	public TextCell(String line){
 		text=line;
 	}
-	@Override
-	public String abbreviatedCellText() {	
+	
+	public String abbreviatedCellText() {
+		//Returns the text of the cell, cut off at ten characters
 		if(text.length()-1>10){
 			if(text.substring(0, 1).equals("\"")){
 				if(text.substring(10, 11).equals("\""))
@@ -20,8 +21,9 @@ public class TextCell implements Cell {
 			return String.format("%-10s", text.substring(1, text.length()-1));
 				
 	}
-	@Override
+	
 	public String fullCellText() {
+		//Returns the full String inputted
 		return text;
 	}
 

@@ -28,7 +28,7 @@ public class FormulaCell extends RealCell {
 			return sum(split[2]);
 		else if(split[1].toUpperCase().equals("AVG"))//for average
 			return avg(split[2]);
-		//the next if else converts the first string of the expression into the initial value of answer
+		//the next if else 
 		if(Character.isLetter(split[1].charAt(0))){
 			SpreadsheetLocation loc = new SpreadsheetLocation(split[1]);
 			answer=((RealCell) spr.getCell(loc)).getDoubleValue();
